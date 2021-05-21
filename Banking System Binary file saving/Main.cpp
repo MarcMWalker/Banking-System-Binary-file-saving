@@ -22,6 +22,7 @@ void createAccount(std::vector<Account>& accounts, int& accountNum) {
 	account = Account();
 	account.initialSetup();
 	account.setAccountNumber(accountNum);
+	account.deposit();
 	accounts.push_back(account);
 	accountNum = accounts.size() + 1;
 	account.print();
