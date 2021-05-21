@@ -7,12 +7,12 @@ bool Account::withdraw() {
 	}
 	else {
 		bool correct{};
-		while (correct) {
+		while (correct != true) {
 			std::cout << "Withdraw amount: ";
 			double val{};
 			std::cin >> val;
 
-			if (val > m_accountNumber) {
+			if ((m_moneyInAccount - val) < 0) {
 				std::cout << "Sorry this is over your account limit\n";
 			}
 

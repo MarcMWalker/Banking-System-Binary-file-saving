@@ -8,7 +8,7 @@ char menuScreen(std::vector<Account>& accounts) {
 	std::cout << "\n-----------------------------------------------\n";
 	std::cout << "MENU";
 	std::cout << "\n-----------------------------------------------\n";
-	std::cout << "(C = Create New Account)\n(D = Delete Account)\n(P = Print Account Details)\n(A = Add Money to Account)\n(E = Exit Program)\n";
+	std::cout << "(C = Create New Account)\n(D = Delete Account)\n(P = Print Account Details)\n(A = Add Money to Account)\n(W = Withdraw money from account)\n(E = Exit Program)\n";
 	std::cout << "Accounts Online: " << accounts.size();
 	char choice{};
 	std::cout << "\n>>>Input Choice: ";
@@ -83,6 +83,23 @@ void addMoney(std::vector<Account>& accounts) {
 	}
 }
 
+void takeMoney(std::vector<Account>& accounts) {
+	std::cout << "Account Number: ";
+	int num{};
+	std::cin >> num;
+
+	for (unsigned int i{ 0 }; i < accounts.size(); i++) {
+		if (accounts.at(i).getAccountNum() == num) {
+			accounts.at(num - 1).withdraw();
+			break;
+		}
+		else if (accounts.at(accounts.size() - 1).getAccountNum() != num) {
+			std::cout << "Account doesnt exist\n";
+			break;
+		}
+	}
+}
+
 //learn more about binary before continuing
 bool addToDatabase(std::vector<Account>& accounts) {
 	size_t size = accounts.size();
@@ -144,6 +161,9 @@ int main() {
 			break;
 		case 'A':
 			addMoney(accounts);
+			break;
+		case 'W':
+			takeMoney(accounts);
 			break;
 		default:
 			break;
