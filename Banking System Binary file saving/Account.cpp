@@ -21,6 +21,7 @@ bool Account::withdraw() {
 				correct = true;
 			}
 		}
+		print();
 		return true;
 	}
 }
@@ -30,6 +31,7 @@ void Account::deposit() {
 	double val{};
 	std::cin >> val;
 	m_moneyInAccount += val;
+	print();
 }
 
 void Account::setFirstName() {
