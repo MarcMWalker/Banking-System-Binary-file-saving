@@ -1,4 +1,5 @@
 #include "Account.h"
+int::Account::m_AccountTotals{0};
 
 bool Account::withdraw() {
 	if (m_moneyInAccount <= 0) {
@@ -31,7 +32,6 @@ void Account::deposit() {
 	double val{};
 	std::cin >> val;
 	m_moneyInAccount += val;
-	print();
 }
 
 void Account::setFirstName() {
@@ -89,8 +89,13 @@ int Account::getAccountNum()const {
 	return m_accountNumber;
 }
 
-Account::~Account()
+int Account::getAccountTotal() const
 {
+	return m_AccountTotals;
+}
+
+Account::~Account(){
+	--m_AccountTotals;
 }
 
 void Account::setLastName() {

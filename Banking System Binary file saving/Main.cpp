@@ -75,6 +75,7 @@ void addMoney(std::vector<Account>& accounts) {
 	for (unsigned int i{ 0 }; i < accounts.size(); i++) {
 		if (accounts.at(i).getAccountNum() == num) {
 			accounts.at(num - 1).deposit();
+			accounts.at(num - 1).print();
 			break;
 		}
 		else if (accounts.at(accounts.size() - 1).getAccountNum() != num) {
