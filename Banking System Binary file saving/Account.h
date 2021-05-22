@@ -20,8 +20,8 @@ public:
 	void setAccountType();
 	void setAccountNumber(int num);
 	void initialSetup();
-	void print();
-	int getAccountNum();
+	void print()const;
+	int getAccountNum()const;
 	~Account();
 };
 

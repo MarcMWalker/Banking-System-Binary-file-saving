@@ -41,7 +41,7 @@ void Account::setFirstName() {
 	m_firstName = name;
 }
 
-void Account::print() {
+void Account::print()const {
 	std::cout << "\n-----------------------------------------------\n";
 	std::cout << "ACCOUNT DETAILS";
 	std::cout << "\n-----------------------------------------------\n";
@@ -85,7 +85,7 @@ void Account::setAccountNumber(int num) {
 	m_accountNumber = num;
 }
 
-int Account::getAccountNum() {
+int Account::getAccountNum()const {
 	return m_accountNumber;
 }
 
