@@ -1,6 +1,11 @@
 #include "Account.h"
 int::Account::m_AccountTotals{0};
 
+Account::Account()
+	: m_firstName{ "" }, m_lastName{ "" }, m_accountType{ "" }, m_moneyInAccount{ 0.00 }, m_accountNumber{ 0 } {
+	++m_AccountTotals;
+}
+
 bool Account::withdraw() {
 	if (m_moneyInAccount <= 0) {
 		std::cout << "Sorry you have no money left to withdraw!\n";
@@ -89,8 +94,7 @@ int Account::getAccountNum()const {
 	return m_accountNumber;
 }
 
-int Account::getAccountTotal() const
-{
+int Account::getAccountTotal(){
 	return m_AccountTotals;
 }
 

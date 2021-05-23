@@ -12,10 +12,7 @@ private:
 	long m_accountNumber;
 	static int m_AccountTotals;
 public:
-	Account()
-		: m_firstName{ "" }, m_lastName{ "" }, m_accountType{ "" }, m_moneyInAccount{ 0.00 }, m_accountNumber{ 0 } {
-		++m_AccountTotals; 
-	}
+	Account();
 	bool withdraw();
 	void deposit();
 	void setFirstName();
@@ -25,7 +22,7 @@ public:
 	void initialSetup();
 	void print()const;
 	int getAccountNum()const;
-	int getAccountTotal()const;
+	static int getAccountTotal();
 	~Account();
 };
 
