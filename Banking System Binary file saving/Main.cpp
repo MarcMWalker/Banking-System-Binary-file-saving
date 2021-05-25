@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Account.h"
+#include "Savings_Account.h"
+#include "Business_Account.h"
 #include <vector>
 #include <algorithm>
 #include <fstream>
@@ -16,10 +18,33 @@ char menuScreen(std::vector<Account>& accounts) {
 	return toupper(choice);
 }
 
+void setAccountType(Account &account) {
+	std::cout << "Account types >> C = Current / B = Business / S = Savings << \n";
+	std::cout << "Account type: ";
+	char type{};
+	std::cin >> type;
+
+	switch (type) {
+	case 'C':
+	case 'c':
+		account = Account();
+		return;
+	case 'B':
+	case 'b':
+		account = Business_Account();
+		return;
+	case 'S':
+	case 's':
+		account = Savings_Account();
+	default:
+		return;
+	}
+}
+
 void createAccount(std::vector<Account>& accounts, int& accountNum) {
-	Account account;
 	std::cout << "**Creating new account**\n";
-	account = Account();
+	Account account;
+	//setAccountType(account);
 	account.initialSetup();
 	account.setAccountNumber(accountNum);
 	account.deposit();
@@ -117,7 +142,7 @@ bool addToDatabase(std::vector<Account>& accounts) {
 
 void loadDatabase(std::vector<Account>& accounts) {
 	std::ifstream rf("data.dat", std::ios::out | std::ios::binary);
-	int size = rf.tellg() / sizeof(Account);
+	auto size = rf.tellg() / sizeof(Account);
 	Account temp[20];
 
 	rf.seekg(std::ifstream::end);
