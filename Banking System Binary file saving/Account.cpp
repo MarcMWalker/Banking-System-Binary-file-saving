@@ -56,38 +56,31 @@ void Account::print()const {
 	std::cout << "\nAccount Number: " << m_accountNumber;
 }
 
-void Account::setAccountType() {
-	std::cout << "Account types >> C = Current / B = Business / S = Savings << \n";
-	std::cout << "Account type: ";
-	char type{};
-	std::cin >> type;
-
-	switch (type) {
-	case 'c':
-	case 'C':
-		m_accountType = "Current";
-		break;
-	case 'b':
-	case 'B':
-		m_accountType = "Business";
-		break;
-	case 's':
-	case 'S':
-		m_accountType = "Savings";
-		break;
-	default:
-		break;
-	}
+void Account::setAccountType(Account &account) {
+	account.m_accountType = "Current";
 }
 
 void Account::initialSetup() {
 	setFirstName();
 	setLastName();
-	setAccountType();
 }
 
 void Account::setAccountNumber(int num) {
 	m_accountNumber = num;
+}
+
+void Account::setLastName() {
+	std::cout << "Last name: ";
+	std::string name{};
+	std::cin >> name;
+	m_lastName = name;
+}
+
+std::string Account::printName()const {
+	std::string fn{m_firstName};
+	std::string ln{m_lastName};
+	std::string nn{ fn + " " + ln };
+	return nn;
 }
 
 int Account::getAccountNum()const {
@@ -98,13 +91,11 @@ int Account::getAccountTotal(){
 	return m_AccountTotals;
 }
 
+double Account::getMoneyInAccount()const {
+	return m_moneyInAccount;
+}
+
 Account::~Account(){
 	--m_AccountTotals;
 }
 
-void Account::setLastName() {
-	std::cout << "Last name: ";
-	std::string name{};
-	std::cin >> name;
-	m_lastName = name;
-}

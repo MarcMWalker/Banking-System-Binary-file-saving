@@ -18,7 +18,9 @@ char menuScreen(std::vector<Account>& accounts) {
 	return toupper(choice);
 }
 
-void setAccountType(Account &account) {
+void setAccountType(std::vector<Account>& accounts, int& accountNum) {
+	Account account;
+	Business_Account bAccount;
 	std::cout << "Account types >> C = Current / B = Business / S = Savings << \n";
 	std::cout << "Account type: ";
 	char type{};
@@ -28,10 +30,22 @@ void setAccountType(Account &account) {
 	case 'C':
 	case 'c':
 		account = Account();
+		account.initialSetup();
+		account.setAccountType(account);
+		account.setAccountNumber(accountNum);
+		account.deposit();
+		accounts.push_back(account);
+		account.print();
 		return;
 	case 'B':
 	case 'b':
-		account = Business_Account();
+		bAccount = Business_Account();
+		bAccount.initialSetup();
+		bAccount.setAccountType(bAccount);
+		bAccount.setAccountNumber(accountNum);
+		bAccount.deposit();
+		accounts.push_back(bAccount);
+		bAccount.print(bAccount);
 		return;
 	case 'S':
 	case 's':
@@ -43,14 +57,8 @@ void setAccountType(Account &account) {
 
 void createAccount(std::vector<Account>& accounts, int& accountNum) {
 	std::cout << "**Creating new account**\n";
-	Account account;
-	//setAccountType(account);
-	account.initialSetup();
-	account.setAccountNumber(accountNum);
-	account.deposit();
-	accounts.push_back(account);
+	setAccountType(accounts, accountNum);
 	accountNum = accounts.size() + 1;
-	account.print();
 }
 
 void deleteAccount(std::vector<Account>& accounts, int& accountNum) {
@@ -85,7 +93,7 @@ void printAccount(std::vector<Account>& accounts, int& accountNum) {
 	}
 	else {
 		for (unsigned int i{ 0 }; i < accounts.size(); ++i) {
-			if (accounts.at(i).getAccountNum() == num) {
+			if (accounts.at(i).getAccountNum() == num  /*accounts.at(i).getAccountType(accounts.at(i)) == "Current"*/) {
 				accounts.at(i).print();
 			}
 		}

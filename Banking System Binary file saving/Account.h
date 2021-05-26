@@ -17,12 +17,15 @@ public:
 	void deposit();
 	void setFirstName();
 	void setLastName();
-	void setAccountType();
+	void setAccountType(Account &account);
 	void setAccountNumber(int num);
 	void initialSetup();
 	void print()const;
 	int getAccountNum()const;
+	double getMoneyInAccount()const;
+	std::string printName()const;
 	static int getAccountTotal();
+	void getAccountType(Account &account);
 	~Account();
 };
 
