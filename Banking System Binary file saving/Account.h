@@ -8,10 +8,10 @@ private:
 	std::string m_firstName;
 	std::string m_lastName;
 	std::string m_accountType;
-	double m_moneyInAccount;
 	long m_accountNumber;
 	static int m_AccountTotals;
 public:
+	double m_moneyInAccount;
 	Account();
 	bool withdraw();
 	void deposit();

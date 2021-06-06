@@ -21,6 +21,7 @@ char menuScreen(std::vector<Account>& accounts) {
 void setAccountType(std::vector<Account>& accounts, int& accountNum) {
 	Account account;
 	Business_Account bAccount;
+	Savings_Account sAccount;
 	std::cout << "Account types >> C = Current / B = Business / S = Savings << \n";
 	std::cout << "Account type: ";
 	char type{};
@@ -49,7 +50,15 @@ void setAccountType(std::vector<Account>& accounts, int& accountNum) {
 		return;
 	case 'S':
 	case 's':
-		account = Savings_Account();
+		sAccount = Savings_Account();
+		sAccount.initialSetup();
+		sAccount.setAccountType(sAccount);
+		sAccount.setAccountNumber(accountNum);
+		sAccount.deposit();
+		sAccount.addInterest(sAccount);
+		accounts.push_back(sAccount);
+		sAccount.print(sAccount);
+		return;
 	default:
 		return;
 	}
