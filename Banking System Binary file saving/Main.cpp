@@ -147,7 +147,7 @@ void takeMoney(std::vector<Account>& accounts) {
 //learn more about binary before continuing
 bool addToDatabase(std::vector<Account>& accounts) {
 	size_t size = accounts.size();
-	std::ofstream wf("data.dat", std::ios::out | std::ios::binary);
+	std::ofstream wf("data.txt", std::ios::out | std::ios::binary);
 	wf.write((char*)&size, sizeof(Account));
 	wf.close();
 	if (!wf.good()) {
@@ -157,16 +157,17 @@ bool addToDatabase(std::vector<Account>& accounts) {
 	return 0;
 }
 
-void loadDatabase(std::vector<Account>& accounts) {
-	std::ifstream rf("data.dat", std::ios::out | std::ios::binary);
-	auto size = rf.tellg() / sizeof(Account);
-	Account temp[20];
-
-	rf.seekg(std::ifstream::end);
-	rf.read((char*)&temp, sizeof(temp));
-	/*for (int i{ 0 }; i < 100; ++i) {
-	accounts.push_back(temp[i]);
-	}*/
+void loadDatabase() {
+	std::ifstream rf;
+	std::string line{};
+	
+	rf.open("data.txt");
+	if (!rf) {
+		std::cerr << "Problem reading file";
+		return;
+	}
+	rf >> line;
+	std::cout << line << std::endl;
 	rf.close();
 }
 
@@ -178,12 +179,9 @@ void exitProgram(bool& end) {
 }
 
 int main() {
-	//Guess I have to upload binary data somewhere to include past data
-	std::ifstream indata;
-	indata.open("data.dat");
 
 	std::vector<Account> accounts{};
-	//loadDatabase(accounts);
+	loadDatabase();
 	bool end{};
 	size_t size = accounts.size();
 	int accountNum = static_cast <int> (size) + 1;
@@ -213,6 +211,5 @@ int main() {
 			break;
 		}
 	}
-	indata.close();
 	return 0;
 }
